@@ -1,5 +1,4 @@
 import requests
-
 from operator import itemgetter
 
 # Creating output API and saving the response.
@@ -10,10 +9,11 @@ print("Status code:", r.status_code)
 # Processing information about each article.
 submission_ids = r.json()
 submission_dicts = []
+
 for submission_id in submission_ids[:30]:
 # Create a separate API call for each article.
-    url = ('https://hacker-news.firebaseio.com/v0/item/' + 
-            str(submission_id) + '.json')
+    url = ('https://hacker-news.firebaseio.com/v0/item/' +
+           str(submission_id) + '.json')
     submission_r = requests.get(url)
     print(submission_r.status_code)
     response_dict = submission_r.json()
@@ -26,8 +26,9 @@ for submission_id in submission_ids[:30]:
     submission_dicts.append(submission_dict)
 
 submission_dicts = sorted(submission_dicts,
-                            key=itemgetter('comments'),
-                            reverse=True)
+                          key=itemgetter('comments'),
+                          reverse=True)
+
 for submission_dict in submission_dicts:
     print("\nTitle:", submission_dict['title'])
     print("Discussion link:", submission_dict['link'])

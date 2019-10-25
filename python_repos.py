@@ -3,7 +3,8 @@ import pygal
 from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
 
 # Create an API call and save the response.
-url = 'https://api.github.com/search/repositories?q=language:Python&sort=stars' # q=language:C, Ruby, Java, Perl, Haskell....
+url = 'https://api.github.com/search/repositories?q=language:Python&sort= \
+       stars' # q=language:C, Ruby, Java, Perl, Haskell....
 r = requests.get(url)
 print("Status code:", r.status_code)
 
@@ -41,7 +42,8 @@ my_config.show_legend = False
 my_config.truncate_label = 15
 my_config.show_y_guides = False
 my_config.width = 1000
-chart = pygal.Bar(my_config, style=my_style) # x_label_rotation=45, show_legend=False
+chart = pygal.Bar(my_config, style=my_style) # x_label_rotation=45,
+                                             # show_legend=False
 chart.title = 'Most-Starred Python Projects on Github'
 chart.x_labels = names
 
@@ -65,8 +67,8 @@ print("\nKeys:", len(repo_dict))
 for key in sorted(repo_dict.keys()):
     print(key)
 
-# Inforamtion on the most popular repository in github 
-and all the information on it.
+# Inforamtion on the most popular repository in github
+# and all the information on it.
 print("\nSelected inforamtion about first repository:")
 print('Name:', repo_dict['name'])
 print('Owner:', repo_dict['owner']['login'])
